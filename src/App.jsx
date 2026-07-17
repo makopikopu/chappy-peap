@@ -14,7 +14,7 @@ import {
 } from "recharts";
 import { Upload, Plus, Trash2, Pencil, Check, X, Loader2, TrendingUp, TrendingDown, ImageOff, RefreshCw, Camera, ChevronDown, ChevronRight, Settings } from "lucide-react";
 import { storage } from "./storage";
-import { ocrImage, parseRateFromText, parseTradeFromText } from "./ocr";
+import { ocrImage, parseRateFromText, parseTradeFromText, parseBluefinBlocks, parseMetaMaskActivityBlocks } from "./ocr";
 
 // ---------- helpers ----------
 
@@ -231,7 +231,7 @@ export default function App() {
   const [rateEditing, setRateEditing] = useState(false);
   const [rateInput, setRateInput] = useState("");
 
-  const [currencyMode, setCurrencyMode] = useState("usd"); // usd | jpy_now | jpy_hist
+  const [currencyMode, setCurrencyMode] = useState("usd"); // usd | jpy_hist
   const [histRates, setHistRates] = useState({}); // isoDate -> rate | null (null = fetch failed)
 
   // load persisted trades
@@ -568,5 +568,4 @@ export default function App() {
 
   const persist = useCallback(async (next) => {
     try {
-      await storage.set(STORAGE_KEY, JSON.stringify(next), false);
-    } catc
+      await storage.set(STORAGE_KEY, J
